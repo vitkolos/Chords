@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: Calibri, Arial, sans-serif;
+}
+
+textarea {
+  font-family: monospace;
+  font-size: 1.5em;
+  height: 500px;
+  max-width: 700px;
+  resize: vertical;
+  white-space: pre;
+  width: 100vw;
+}
+
+button, select {
+  max-width: 700px;
+  width: 100vw;
+}
+
+.fs15 {
+  font-size: 1.5em;
+}
+
+.w50 {
+  max-width: 350px;
+  width: 50vw;
+}
+
+svg.chordChart {
+  background: white;
+  /*border: 1px #ccc solid;*/
+  border-radius: 10px;
+  width: 120px;
+}
+
+svg.chordChart .grid {
+  stroke: black;
+  stroke-linecap: round;
+}
+
+svg.chordChart .labels {
+  fill: white;
+}
+
+svg.chordChart .text {
+  font-family: Arial, sans-serif;
+}
+
+svg.chordChart .title {
+  font-size: 20px;
+}
+
+/*csslint box-sizing: false*/

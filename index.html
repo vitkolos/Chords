@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Transpose</title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+	</head>
+	<body>
+		<textarea id="ta"></textarea>
+		<br><button type="button" onclick="transposeTo(this.innerHTML);" id="num" class="fs15">0</button>
+		<br><button type="button" onclick="transpose(true);" class="w50 fs15">↑</button><button type="button" onclick="transpose(false);" class="w50 fs15">↓</button>
+		<br><button type="button" onclick="transpose(false, true);">uvést tvar akordů do normálu, zobrazit diagramy</button>
+		<br><button type="button" onclick="enConversion(true);" class="w50">vstup – převést B na H (z anglosaské notace)</button><button type="button" onclick="enConversion(false);" class="w50">výstup – převést H na B (do anglosaské notace)</button>
+		<br><br><select name="instrument" id="instrument" onchange="displayChords();"><option value="guitar">Guitar</option><option value="ukulele">Ukulele</option></select>
+		<div id="charts"></div>
+		<script src="chartmaker.js"></script>
+		<script src="chords.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

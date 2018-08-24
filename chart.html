@@ -6,8 +6,9 @@
 		<style>
 			svg.chordChart {
 				background: white;
-				border: 1px #ccc solid;
+				/*border: 1px #ccc solid;*/
 				border-radius: 10px;
+				width: 120px;
 			}
 
 			svg.chordChart .grid {
@@ -24,22 +25,58 @@
 			}
 
 			svg.chordChart .title {
-				font-size: 150%;
+				font-size: 20px;
 			}
 		</style>
 	</head>
 	<body>
-		<svg id="exampleChart" class="chordChart">Example chart goes here</svg>
+		<div id="charts"></div>
 		<script src='chartmaker.js'></script>
+		<script src='chords.js'></script>
 		<script>
-			var createChart = chartMaker();
-			var placeholder = document.getElementById("exampleChart");
-			var udi = {
-				title: "C",
-				fret: "0,0,0,3",
-				label: "0,0,0,1"
-			};
-			createChart(placeholder, udi);
+			var num = 0;
+			chord("Cmajor");
+
+			function chord(name) {
+				// creates chord diagram using its name
+				name = name.replace("Bb", "A#").replace("H", "B");
+				if (name[1] == "#") {
+					var letter = name.slice(0, 2);
+					var type = name.slice(2);
+				} else {
+					var letter = name.slice(0, 1);
+					var type = name.slice(1);
+				}
+				if (type == "") {
+					type = "major";
+				} else if (type == "m") {
+					type = "minor";
+				}
+				for (var i = 0; i < 4; i++) {
+					document.getElementById("charts").innerHTML += '<svg id="chart' + num + '" class="chordCharts"></svg>';
+					var pos = chords.ukulele[letter][type].positions[i + ""]
+					var labelF = pos.fingers;
+					var fretF = pos.frets;
+					var baseF = pos.baseFret;
+					baseF--;
+					var labels = labelF["0"] + "," + labelF["1"] + "," + labelF["2"] + "," + labelF["3"];
+					var frets = (fretF["0"] + baseF) + "," + (fretF["1"] + baseF) + "," + (fretF["2"] + baseF) + "," + (fretF["3"] + baseF);
+					var name = (i == 0) ? name : "";
+					create(name, frets, labels, "chart" + num);
+					num++;
+				}
+			}
+
+			function create(titleI, fretI, labelI, id) {
+				var createChart = chartMaker();
+				var placeholder = document.getElementById(id);
+				var udi = {
+					title: titleI,
+					fret: fretI,
+					label: labelI
+				};
+				createChart(placeholder, udi);
+			}
 		</script>
 	</body>
 </html>
