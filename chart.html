@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			svg.chordChart {
+				background: white;
+				border: 1px #ccc solid;
+				border-radius: 10px;
+			}
+
+			svg.chordChart .grid {
+				stroke: black;
+				stroke-linecap: round;
+			}
+
+			svg.chordChart .labels {
+				fill: white;
+			}
+
+			svg.chordChart .text {
+				font-family: Arial, sans-serif;
+			}
+
+			svg.chordChart .title {
+				font-size: 150%;
+			}
+		</style>
+	</head>
+	<body>
+		<svg id="exampleChart" class="chordChart">Example chart goes here</svg>
+		<script src='chartmaker.js'></script>
+		<script>
+			var createChart = chartMaker();
+			var placeholder = document.getElementById("exampleChart");
+			var udi = {
+				title: "C",
+				fret: "0,0,0,3",
+				label: "0,0,0,1"
+			};
+			createChart(placeholder, udi);
+		</script>
+
+	</body>
+</html>
