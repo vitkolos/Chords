@@ -6,13 +6,13 @@ var minifycss = require("gulp-minify-css"),
 	autoprefixer = require("gulp-autoprefixer"),
 	concat = require("gulp-concat"),
 	gulpIf = require("gulp-if"),
-	uglify = require("gulp-uglify"),
+	minify = require("gulp-minify"),
 	del = require("del");
 
 var config = {
-	cssFiles: "./*.css",
-	jsFiles: "./*.js",
-	outputFolderCssJs: "cache",
+	cssFiles: "app/*.css",
+	jsFiles: "app/*.js",
+	outputFolderCssJs: "app/cache",
 	production: true
 }
 
@@ -30,7 +30,7 @@ gulp.task("concatCssMain", function () {
 gulp.task("concatJs", function () {
 	return gulp.src(config.jsFiles)
 		.pipe(concat("scripts.js"))
-		.pipe(gulpIf(config.production, uglify()))
+		.pipe(minify())
 		.pipe(gulp.dest(config.outputFolderCssJs))
 });
 
@@ -39,12 +39,12 @@ gulp.task("deleteCache", function () {
 });
 
 gulp.task("browser-sync", function () {
-	return browserSync.init({
-		server: true,
-		files: config.filesBrowserSync
-	});
 	browserSync.use(htmlInjector, {
-		files: ".html"
+		files: "app/*.html"
+	});
+	browserSync.init({
+		server: "app",
+		files: config.filesBrowserSync
 	});
 });
 
