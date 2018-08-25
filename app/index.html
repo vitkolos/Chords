@@ -12,7 +12,8 @@
 		<br><button type="button" onclick="transpose(false, true);">uvést tvar akordů do normálu, zobrazit diagramy</button>
 		<br><button type="button" onclick="enConversion(true);" class="w50">vstup – převést B na H (z anglosaské notace)</button><button type="button" onclick="enConversion(false);" class="w50">výstup – převést H na B (do anglosaské notace)</button>
 		<br><br><select name="instrument" id="instrument" onchange="displayChords();"><option value="guitar">Guitar</option><option value="ukulele">Ukulele</option></select>
-		<div id="charts"></div>
+		<br>
+		<div class="charts" id="charts"></div>
 		<script src="chartmaker.js"></script>
 		<script src="chords.js"></script>
 		<script src="script.js"></script>
