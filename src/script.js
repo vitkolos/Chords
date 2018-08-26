@@ -91,19 +91,23 @@ function transpose(upY, tr = false) {
 }
 
 function enConversion(fromEn) {
+	if(!fromEn) {
+		transpose(false, true);
+	}
 	var song = ta.value.split("\n");
 	for(var j = 0; j < song.length; j++) {
 		if(areChords(song[j])) {
 			if(fromEn) {
 				song[j] = song[j].replace("B", "H").replace("Hb", "Bb");
-				transpose(false, true);
 			} else {
-				transpose(false, true);
 				song[j] = song[j].replace("H", "B");
 			}
 		}
 	}
 	ta.value = song.join("\n");
+	if(fromEn) {
+		transpose(false, true);
+	}
 }
 
 function areChords(line) {
@@ -135,8 +139,21 @@ function transposeTo(num) {
 
 function displayChords() {
 	document.getElementById("charts").innerHTML = "";
-	for(var i = 0; i < chordsToDisplay.length; i++) {
-		chord(chordsToDisplay[i], true);
+	if(chordsToDisplay.length > 0) {
+		for(var i = 0; i < chordsToDisplay.length; i++) {
+			chord(chordsToDisplay[i], true);
+		}
+		document.getElementById("charts").innerHTML += "<br><small>Pro více variant klikni na akord.</small><br><br>";
+	}
+}
+
+function variations(chordName, one) {
+	if(one) {
+		document.getElementById("charts").innerHTML = "";
+		chord(chordName, false);
+		document.getElementById("charts").innerHTML += "<br><small onclick=\"variations('Cmajor', false);\">Klikni pro návrat ke všem akordům.</small><br><br>";
+	} else {
+		displayChords();
 	}
 }
 
@@ -152,7 +169,10 @@ function chord(name, one) {
 		var letter = name.slice(0, 1).replace("H", "B");
 		var type = name.slice(1);
 	}
-	type = (type == "maj") ? "maj7" : type;
+	if(type == "maj") {
+		type = "maj7";
+		name = name.replace("maj", "maj7");
+	}
 	if(type == "") {
 		type = "major";
 	} else if(type == "m") {
@@ -160,7 +180,7 @@ function chord(name, one) {
 	}
 	if(chords[document.getElementById("instrument").value].hasOwnProperty(letter) && chords[document.getElementById("instrument").value][letter].hasOwnProperty(type)) {
 		for(var i = 0; i < 4; i++) {
-			document.getElementById("charts").innerHTML += '<svg id="chart' + num + '" class="chordCharts"></svg>';
+			document.getElementById("charts").innerHTML += '<span onclick="variations(\'' + name + '\', ' + one + ');"><svg id="chart' + num + '" class="chordCharts"></svg></span>';
 
 			var pos = chords[document.getElementById("instrument").value][letter][type].positions[i + ""];
 

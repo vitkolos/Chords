@@ -36,6 +36,10 @@ button, select, .charts {
     width: calc(50vw - 9px);
 }
 
+button, span[onclick], small[onclick] {
+    cursor: pointer;
+}
+
 svg.chordChart {
     background: white;
     /*border: 1px #ccc solid;*/
