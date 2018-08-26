@@ -148,6 +148,7 @@ function displayChords() {
 }
 
 function variations(chordName, one) {
+	// multiple chord variations
 	if(one) {
 		document.getElementById("charts").innerHTML = "";
 		chord(chordName, false);
