@@ -1,7 +1,6 @@
 var chordsToDisplay = [];
 var ta = document.getElementById("ta");
-ta.value =
-	"None Like You\n\nF          Csus4        Dm\nThere is none like you\nBb        F                C7\nNo one else can touch my heart like you do\nF      C         Dm        Bb\nI can search for all eternity long\n   Dmin        C       Bb    Fmaj\nAnd find there is none like you";
+//ta.value = "None Like You\n\nF          Csus4        Dm\nThere is none like you\nBb        F                C7\nNo one else can touch my heart like you do\nF      C         Dm        Bb\nI can search for all eternity long\n   Dmin        C       Bb    Fmaj\nAnd find there is none like you";
 var num = document.getElementById("num");
 var arrFlat = ["Cb", "Db", "Eb", "Fb", "Gb", "Ab", "Hb", "Ax", "Hx", "Ex"];
 var arrSharp = ["H", "Cx", "Dx", "E", "Fx", "Gx", "Bb", "Bb", "C", "F"];
